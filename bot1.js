@@ -1,3 +1,4 @@
+const http = require('http');
 const mineflayer = require('mineflayer');
 require('colors').enable();
 
@@ -75,6 +76,12 @@ bot.once("spawn", () => {
         if (usernameSender === admin && message.startsWith("! ")) {
             const command = message.replace("! ", "");
             bot.chat(command);
+            http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Bot ishlayapti\n');
+}).listen(process.env.PORT || 3000, () => {
+    console.log('HTTP server ishga tushdi (uptime uchun)');
+});
         }
     });
 
